@@ -1,0 +1,9 @@
+# ArabArenaAI-1 — Foundation Phase
+# ---------------------------------------------------------------------------
+# This file intentionally contains no training or inference dependencies yet.
+# Dependencies will be pinned per phase in dedicated requirement files:
+#   requirements-dev.txt      (Phase 1 — tooling, lint, tests)
+#   requirements-eval.txt     (Phase 4 — baseline evaluation)
+#   requirements-training.txt (Phase 5 — fine-tuning)
+#   requirements-inference.txt (Phase 7 — deployment)
+# ---------------------------------------------------------------------------
