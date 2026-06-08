@@ -1,0 +1,34 @@
+# Dataset manifest — ArabArenaAI-1
+manifest_version: "1.0"
+status: proposed
+
+dataset_name: programming-corpus-ar
+source_url: "https://huggingface.co/datasets/bigcode/the-stack"
+country: GLOBAL
+language: mixed-ar-en
+license: "L1 — Open source code per repository license (per-file); The Stack distribution terms apply"
+license_class: L1
+domain: code
+collection_method: "Filter The Stack (or equivalent OSS corpus) for Arabic comments, Arabic READMEs, and bilingual docstrings; manifest per upstream repo license"
+expected_size: "~1GB–10GB filtered subset (estimate; Arabic code text is sparse)"
+quality_score: null  # Estimated pre-cleaning: 0.62 — assign after Phase 3
+legal_risk: medium
+
+training_allowed: conditional  # Per upstream repo license matrix
+redistribution_allowed: conditional
+pii_status: unknown  # Secrets scanning mandatory before training
+
+notes: |
+  Programming corpus — preserves code capability during regional fine-tuning
+  (see METRICS.md programming regression gate). Primary language is code;
+  Arabic appears in comments, issues, and documentation. NOT Saudi-specific
+  but required to prevent engineering regression. Must run secret/PII scanners
+  and license compatibility matrix against Qwen fine-tune terms. Consider
+  smaller curated Arabic Stack Overflow or regional dev blog subsets as
+  higher-quality complements. Medium legal risk due to per-repo license mix.
+  No download until license matrix tooling is defined in Phase 3.
+
+approved_by: null
+approved_date: null
+collection_date: null
+source_snapshot_ref: null

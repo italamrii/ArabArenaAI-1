@@ -1,0 +1,221 @@
+# ArabArenaAI-1 Benchmark — Saudi Knowledge
+benchmark_version: "0.1.0"
+benchmark_name: saudi_knowledge
+description: |
+  Factual and procedural knowledge specific to Saudi Arabia covering Vision 2030,
+  government services, business environment, culture, and economy. Prompts are in
+  Arabic; gold answers in formal Arabic (MSA). Items require periodic review.
+scoring_method: |
+  Binary accuracy (0/1) per item with optional partial credit (0.5) for multi-fact
+  answers when rubric specifies. Category score = (earned / max) × 100.
+evaluation_type: closed_qa
+language: ar-SA
+item_count: 25
+maintainer: eval-team
+valid_until_default: "2027-06-08"
+
+sample_questions:
+  # --- Vision 2030 (5) ---
+  - id: sk-v2030-001
+    sub_domain: vision_2030
+    difficulty: easy
+    question: "ما هي رؤية المملكة العربية السعودية 2030؟ اذكر الهدف العام في جملتين."
+    gold_answer: "رؤية 2030 خطة استراتيجية طويلة المدى لتنويع الاقتصاد السعودي وتقليل الاعتماد على النفط، وتطوير قطاعات مثل السياحة والترفيه والتقنية والخدمات، وتمكين المجتمع والحكومة والاقتصاد."
+    source_ref: "https://www.vision2030.gov.sa/"
+    valid_until: "2027-06-08"
+
+  - id: sk-v2030-002
+    sub_domain: vision_2030
+    difficulty: medium
+    question: "اذكر ثلاثة برامج رئيسية ضمن برامج تحقيق رؤية 2030."
+    gold_answer: "أمثلة مقبولة: برنامج جودة الحياة، برنامج التحول الوطني، برنامج تطوير الصناعة الوطنية والخدمات اللوجستية، برنامج تنمية القدرات البشرية، برنامج استدامة الحياة الفطرية — أي ثلاثة رسمية من برامج الرؤية."
+    source_ref: "https://www.vision2030.gov.sa/"
+    valid_until: "2027-06-08"
+
+  - id: sk-v2030-003
+    sub_domain: vision_2030
+    difficulty: medium
+    question: "ما هو مشروع «نيوم» وما دوره ضمن رؤية 2030؟"
+    gold_answer: "نيوم مشروع مدينة ومشاريع مستقبلية في شمال غرب المملكة يهدف إلى نموذج اقتصادي وتقني متقدم واستدامة، ويُعد أحد المشاريع الكبرى ضمن المشاريع العملاقة لدعم تنويع الاقتصاد والابتكار."
+    source_ref: "https://www.neom.com/"
+    valid_until: "2027-06-08"
+
+  - id: sk-v2030-004
+    sub_domain: vision_2030
+    difficulty: hard
+    question: "ما الفرق بين «برنامج التحول الوطني» و«برامج تحقيق الرؤية»؟"
+    gold_answer: "برامج تحقيق الرؤية هي المحاور الاستراتيجية الكبرى؛ برنامج التحول الوطني آلية تنفيذية تنسّق مبادرات حكومية لتحقيق مستهدفات الرؤية عبر مراحل وخطط تشغيلية ومؤشرات أداء."
+    source_ref: "https://www.vision2030.gov.sa/"
+    valid_until: "2027-06-08"
+
+  - id: sk-v2030-005
+    sub_domain: vision_2030
+    difficulty: easy
+    question: "ما الهدف من برنامج جودة الحياة ضمن رؤية 2030؟"
+    gold_answer: "تحسين نمط حياة المواطنين والمقيمين عبر تطوير الخيارات الثقافية والترفيهية والرياضية والبيئية والخدمات في المدن."
+    source_ref: "https://www.vision2030.gov.sa/"
+    valid_until: "2027-06-08"
+
+  # --- Government services (5) ---
+  - id: sk-gov-001
+    sub_domain: government_services
+    difficulty: easy
+    question: "ما المنصة الوطنية الموحدة للخدمات الحكومية الإلكترونية في السعودية؟"
+    gold_answer: "منصة «أبشر» للأفراد (ضمن منظومة الخدمات الحكومية)، والبوابة الوطنية الموحدة للخدمات الحكومية عبر gov.sa / ناجز ومنصات ذات الصلة — الإجابة المقبولة: أبشر للخدمات الفردية الشائعة."
+    source_ref: "https://www.my.gov.sa/"
+    valid_until: "2027-06-08"
+
+  - id: sk-gov-002
+    sub_domain: government_services
+    difficulty: medium
+    question: "ما هي منصة «قوى» وما خدماتها الرئيسية لأصحاب العمل؟"
+    gold_answer: "قوى منصة وزارة الموارد البشرية والتنمية الاجتماعية لإدارة العمل: تصاريح العمل، عقود، نطاقات، التأشيرات المرتبطة بالعمالة، وخدمات امتثال سوق العمل."
+    source_ref: "https://qiwa.sa/"
+    valid_until: "2027-06-08"
+
+  - id: sk-gov-003
+    sub_domain: government_services
+    difficulty: medium
+    question: "ما الهدف من برنامج «نطاقات» في سوق العمل السعودي؟"
+    gold_answer: "تحفيز المنشآت على توطين الوظائف ورفع نسبة السعوديين فيها عبر تصنيفات (بلاتيني، أخضر، أصفر، أحمر) مرتبطة بالامتثال."
+    source_ref: "https://qiwa.sa/"
+    valid_until: "2027-06-08"
+
+  - id: sk-gov-004
+    sub_domain: government_services
+    difficulty: easy
+    question: "من الجهة المسؤولة عن إصدار الهوية الوطنية والإقامة في المملكة؟"
+    gold_answer: "الجهة المختصة هي وزارة الداخلية عبر الأحوال المدنية (الجوازات) والDirectorates ذات الصلة؛ الخدمات غالباً عبر أبشر."
+    source_ref: "https://www.my.gov.sa/"
+    valid_until: "2027-06-08"
+
+  - id: sk-gov-005
+    sub_domain: government_services
+    difficulty: hard
+    question: "ما هي «منصة اعتماد» وما علاقتها بالمشتريات الحكومية؟"
+    gold_answer: "اعتماد منصة للمشتريات الحكومية الإلكترونية تمكّن الجهات الحكومية والموردين من طرح المنافسات والعقود والفوترة الإلكترونية وفق أنظمة المنافسات والمشتريات."
+    source_ref: "https://portal.etimad.sa/"
+    valid_until: "2027-06-08"
+
+  # --- Business environment (5) ---
+  - id: sk-biz-001
+    sub_domain: business_environment
+    difficulty: medium
+    question: "ما هي وزارة الاستثمار (MISA) وما دورها؟"
+    gold_answer: "وزارة الاستثمار هي الجهة المعنية بجذب الاستثمار الأجنبي والمحلي، ترخيص نشاطات المستثمرين، ودعم بيئة الأعمال والخدمات للمستثمرين."
+    source_ref: "https://misa.gov.sa/"
+    valid_until: "2027-06-08"
+
+  - id: sk-biz-002
+    sub_domain: business_environment
+    difficulty: easy
+    question: "ما المقصود بالسجل التجاري في السعودية؟"
+    gold_answer: "وثيقة رسمية تثبت قيد المنشأة تجارياً لدى وزارة التجارة وتحدد الاسم التجاري ونشاطها ومالكها أو شركاءها."
+    source_ref: "https://mc.gov.sa/"
+    valid_until: "2027-06-08"
+
+  - id: sk-biz-003
+    sub_domain: business_environment
+    difficulty: medium
+    question: "اذكر نوعين من أنواع الشركات الشائعة في نظام الشركات السعودي."
+    gold_answer: "شركة ذات مسؤولية محدودة؛ شركة مساهمة (مبسطة أو مقفلة/عامة)； شركة تضامن؛ شركة توصية — أي نوعين صحيحين."
+    source_ref: "https://mc.gov.sa/"
+    valid_until: "2027-06-08"
+
+  - id: sk-biz-004
+    sub_domain: business_environment
+    difficulty: medium
+    question: "ما هي المنطقة الخاصة «المنطقة الاقتصادية لمدينة الرياض» باختصار؟"
+    gold_answer: "منطقة اقتصادية خاصة تهدف إلى جذب الاستثمار في قطاعات مستهدفة (مثل اللوجستيات والتقنية والمالية) بإطار تنظيمي ومحفزات للأعمال."
+    source_ref: "https://www.rcrc.gov.sa/"
+    valid_until: "2027-06-08"
+
+  - id: sk-biz-005
+    sub_domain: business_environment
+    difficulty: hard
+    question: "ما الفرق بين «رخصة بلدي» و«السجل التجاري» للمنشأة؟"
+    gold_answer: "السجل التجاري يثبت كيان المنشأة تجارياً لدى وزارة التجارة؛ رخصة بلدي تصدر من الأمانة/البلدية وتمكّن ممارسة النشاط في موقع جغرافي محدد وفق اشتراطات البلدية."
+    source_ref: "https://mc.gov.sa/"
+    valid_until: "2027-06-08"
+
+  # --- Saudi culture (5) ---
+  - id: sk-cult-001
+    sub_domain: saudi_culture
+    difficulty: easy
+    question: "ما هو اليوم الوطني للمملكة العربية السعودية ومتى يُحتفل به؟"
+    gold_answer: "23 سبتمبر من كل عام، يُحتفل بتوحيد المملكة على يد الملك عبدالعزيز آل سعود."
+    source_ref: "https://www.saudi.gov.sa/"
+    valid_until: "2027-06-08"
+
+  - id: sk-cult-002
+    sub_domain: saudi_culture
+    difficulty: medium
+    question: "ما آداب المصافحة والترحيب في بيئة العمل السعودية الرسمية؟"
+    gold_answer: "التحية بالسلام أو المصافحة حسب السياق والجنس؛ احترام الكبار والمنصب؛ تجنب المبالغة في القرب الجسدي؛ استخدام الألقاب الرسمية في المراسلات."
+    source_ref: "general-cultural-norm"
+    valid_until: "2027-06-08"
+
+  - id: sk-cult-003
+    sub_domain: saudi_culture
+    difficulty: easy
+    question: "ما أهمية شهر رمضان في السياق السعودي (اجتماعياً وعملياً)؟"
+    gold_answer: "شهر صيام وعبادة؛ تتكيف ساعات العمل؛ ازدحام اجتماعي في الإفطار؛ احترام الصيام في التعامل العام."
+    source_ref: "general-cultural-norm"
+    valid_until: "2027-06-08"
+
+  - id: sk-cult-004
+    sub_domain: saudi_culture
+    difficulty: medium
+    question: "ما دور «الديوانية» في ثقافة الأعمال السعودية التقليدية؟"
+    gold_answer: "مجلس للتواصل غير الرسمي وبناء العلاقات واتخاذ مباحثات تجارية في جو من الثقة."
+    source_ref: "general-cultural-norm"
+    valid_until: "2027-06-08"
+
+  - id: sk-cult-005
+    sub_domain: saudi_culture
+    difficulty: medium
+    question: "ما المناسبات الدينية الرئيسية التي تؤثر على التقويم التجاري في السعودية؟"
+    gold_answer: "رمضان، عيد الفطر، عيد الأضحى، موسم الحج — مع إجازات رسمية وتغير ساعات العمل."
+    source_ref: "general-cultural-norm"
+    valid_until: "2027-06-08"
+
+  # --- Economy (5) ---
+  - id: sk-eco-001
+    sub_domain: economy
+    difficulty: easy
+    question: "ما هي تداول السعودية وما وظيفتها؟"
+    gold_answer: "السوق المالية السعودية (تداول) منصة تداول الأسهم والأدوات المالية في المملكة."
+    source_ref: "https://www.saudiexchange.sa/"
+    valid_until: "2027-06-08"
+
+  - id: sk-eco-002
+    sub_domain: economy
+    difficulty: medium
+    question: "ما دور البنك المركزي السعودي (ساما)؟"
+    gold_answer: "الإشراف على النظام المصرفي وال monetary policy والاستقرار المالي وإصدار الأنظمة للبنوك وشركات التأمين والمدفوعات."
+    source_ref: "https://www.sama.gov.sa/"
+    valid_until: "2027-06-08"
+
+  - id: sk-eco-003
+    sub_domain: economy
+    difficulty: medium
+    question: "ما المقصود بـ «رؤية OPEC+» في سياق الاقتصاد السعودي؟"
+    gold_answer: "اتفاقيات إنتاج النفط بين أعضاء OPEC وشركاء (بما فيها السعودية) لإدارة العرض العالمي واستقرار الأسواق — السعودية لاعب محوري."
+    source_ref: "public-economic-knowledge"
+    valid_until: "2027-06-08"
+
+  - id: sk-eco-004
+    sub_domain: economy
+    difficulty: easy
+    question: "اذكر ثلاثة قطاعات غير نفطية تُركز عليها رؤية 2030."
+    gold_answer: "أي ثلاثة: السياحة، الترفيه، التقنية، اللوجستيات، التعدين، الصناعة، الخدمات المالية."
+    source_ref: "https://www.vision2030.gov.sa/"
+    valid_until: "2027-06-08"
+
+  - id: sk-eco-005
+    sub_domain: economy
+    difficulty: hard
+    question: "ما هي ضريبة القيمة المضافة في السعودية وما نسبتها القياسية؟"
+    gold_answer: "ضريبة استهلاك على السلع والخدمات؛ النسبة القياسية 15% (يُراجع عند التقييم)."
+    source_ref: "https://zatca.gov.sa/"
+    valid_until: "2027-06-08"

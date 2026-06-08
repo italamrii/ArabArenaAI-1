@@ -1,0 +1,188 @@
+# ArabArenaAI-1 Benchmark — Translation
+benchmark_version: "0.1.0"
+benchmark_name: translation
+description: |
+  Arabic ↔ English translation for business, technical, and formal content.
+  Preserves terminology, entities, numbers, and register.
+scoring_method: |
+  Reference-based chrF++/COMET (Phase 4 harness) + human spot-check.
+  Entity/number preservation scored separately (binary per item).
+evaluation_type: translation
+language: mixed-ar-en
+item_count: 25
+
+sample_questions:
+  - id: tr-001
+    sub_domain: ar_to_en
+    difficulty: easy
+    direction: ar_to_en
+    question: "ترجم إلى الإنجليزية: «مرحباً، نود جدولة اجتماع لمناقشة الشراكة.»"
+    gold_answer: "Hello, we would like to schedule a meeting to discuss the partnership."
+
+  - id: tr-002
+    sub_domain: en_to_ar
+    difficulty: easy
+    direction: en_to_ar
+    question: "Translate to formal Arabic: «Please find the attached invoice.»"
+    gold_answer: "تفضل المرفق فاتورة / يرجى الاطلاع على الفاتورة المرفقة."
+
+  - id: tr-003
+    sub_domain: ar_to_en
+    difficulty: medium
+    direction: ar_to_en
+    question: "ترجم: «تسعى رؤية 2030 إلى تنويع الاقتصاد وتقليل الاعتماد على النفط.»"
+    gold_answer: "Vision 2030 seeks to diversify the economy and reduce dependence on oil."
+
+  - id: tr-004
+    sub_domain: en_to_ar
+    difficulty: medium
+    direction: en_to_ar
+    question: "Translate: «Our SaaS platform offers role-based access control.»"
+    gold_answer: "توفر منصتنا SaaS تحكماً في الوصول قائماً على الأدوار."
+
+  - id: tr-005
+    sub_domain: ar_to_en
+    difficulty: hard
+    direction: ar_to_en
+    question: "ترجم: «يُخصم 15% ضريبة القيمة المضافة على الخدمات الخاضعة للضريبة.»"
+    gold_answer: "A 15% value-added tax (VAT) is applied to taxable services."
+
+  - id: tr-006
+    sub_domain: en_to_ar
+    difficulty: hard
+    direction: en_to_ar
+    question: "Translate: «The board approved the merger subject to regulatory clearance.»"
+    gold_answer: "وافق مجلس الإدارة على الاندماج subject to regulatory approval / خاضعاً للموافقات التنظيمية."
+
+  - id: tr-007
+    sub_domain: ar_to_en
+    difficulty: easy
+    direction: ar_to_en
+    question: "ترجم: «سجل تجاري رقم 1010123456.»"
+    gold_answer: "Commercial Registration (CR) number 1010123456."
+
+  - id: tr-008
+    sub_domain: en_to_ar
+    difficulty: medium
+    direction: en_to_ar
+    question: "Translate: «Deploy the microservice to the Riyadh region.»"
+    gold_answer: "انشر الخدمة المصغرة في region الرياض / منطقة الرياض."
+
+  - id: tr-009
+    sub_domain: ar_to_en
+    difficulty: medium
+    direction: ar_to_en
+    question: "ترجم إلى الإنجليزية: «تصنيف نطاقات بلاتيني يعني امتثالاً كاملاً لبرنامج توطين العمالة.»"
+    gold_answer: "Platinum Nitaqat classification means full compliance with the Saudization (Nitaqat) program."
+
+  - id: tr-010
+    sub_domain: en_to_ar
+    difficulty: easy
+    direction: en_to_ar
+    question: "Translate: «Payment due within 30 days.»"
+    gold_answer: "الدفع مستحق خلال 30 يوماً."
+
+  - id: tr-011
+    sub_domain: ar_to_en
+    difficulty: medium
+    direction: ar_to_en
+    question: "ترجم: «أُجريت Due diligence على البيانات المالية للربع الثالث.»"
+    gold_answer: "Due diligence was conducted on Q3 financial statements."
+
+  - id: tr-012
+    sub_domain: en_to_ar
+    difficulty: hard
+    direction: en_to_ar
+    question: "Translate: «API rate limit: 100 requests per minute per API key.»"
+    gold_answer: "حد معدل API: 100 طلباً في الدقيقة لكل مفتاح API."
+
+  - id: tr-013
+    sub_domain: ar_to_en
+    difficulty: easy
+    direction: ar_to_en
+    question: "ترجم: «شكراً لتعاونكم.»"
+    gold_answer: "Thank you for your cooperation."
+
+  - id: tr-014
+    sub_domain: en_to_ar
+    difficulty: medium
+    direction: en_to_ar
+    question: "Translate: «The startup raised a Series A led by a GCC fund.»"
+    gold_answer: "جمعت الشركة الناشئة جولة Series A بقيادة صندوق خليجي."
+
+  - id: tr-015
+    sub_domain: ar_to_en
+    difficulty: hard
+    direction: ar_to_en
+    question: "ترجم: «يُحظر مشاركة بيانات العملاء خارج المملكة دون موافقة خطية.»"
+    gold_answer: "Sharing customer data outside the Kingdom is prohibited without written consent."
+
+  - id: tr-016
+    sub_domain: en_to_ar
+    difficulty: easy
+    direction: en_to_ar
+    question: "Translate: «Invalid credentials.»"
+    gold_answer: "بيانات اعتماد غير صالحة."
+
+  - id: tr-017
+    sub_domain: ar_to_en
+    difficulty: medium
+    direction: ar_to_en
+    question: "ترجم: «تداول السعودية هو السوق الرئيسي للأوراق المالية.»"
+    gold_answer: "Saudi Exchange (Tadawul) is the main securities market."
+
+  - id: tr-018
+    sub_domain: en_to_ar
+    difficulty: medium
+    direction: en_to_ar
+    question: "Translate: «Implement retry with exponential backoff.»"
+    gold_answer: "نفّذ إعادة المحاولة مع exponential backoff / تأخير exponential."
+
+  - id: tr-019
+    sub_domain: ar_to_en
+    difficulty: easy
+    direction: ar_to_en
+    question: "ترجم: «الموعد النهائي: 15 مارس 2026.»"
+    gold_answer: "Deadline: March 15, 2026."
+
+  - id: tr-020
+    sub_domain: en_to_ar
+    difficulty: hard
+    direction: en_to_ar
+    question: "Translate: «Non-disclosure agreement effective upon signature.»"
+    gold_answer: "اتفاقية عدم الإفصاح سارية upon التوقيع / من تاريخ التوقيع."
+
+  - id: tr-021
+    sub_domain: ar_to_en
+    difficulty: medium
+    direction: ar_to_en
+    question: "ترجم: «نلتزم بأحكام نظام حماية البيانات الشخصية.»"
+    gold_answer: "We comply with the Personal Data Protection Law (PDPL) regulations."
+
+  - id: tr-022
+    sub_domain: en_to_ar
+    difficulty: medium
+    direction: en_to_ar
+    question: "Translate: «Gross margin improved by 2 percentage points.»"
+    gold_answer: "تحسّ هامش الربح الإجمالي بمقدار نقطتين percentage."
+
+  - id: tr-023
+    sub_domain: ar_to_en
+    difficulty: hard
+    direction: ar_to_en
+    question: "ترجم: «يُسمح بالعمل عن بُعد ثلاثة أيام أسبوعياً.»"
+    gold_answer: "Remote work is permitted three days per week."
+
+  - id: tr-024
+    sub_domain: en_to_ar
+    difficulty: easy
+    direction: en_to_ar
+    question: "Translate: «Out of stock.»"
+    gold_answer: "غير متوفر / نفد المخزون."
+
+  - id: tr-025
+    sub_domain: ar_to_en
+    difficulty: medium
+    direction: ar_to_en
+    question: "ترجم: «تم إنشاء تذكرة دعم برقم 45821.»"
+    gold_answer: "Support ticket #45821 has been created."

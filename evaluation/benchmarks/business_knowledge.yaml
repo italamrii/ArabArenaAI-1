@@ -1,0 +1,163 @@
+# ArabArenaAI-1 Benchmark — Business Knowledge
+benchmark_version: "0.1.0"
+benchmark_name: business_knowledge
+description: |
+  Entrepreneurship, formal business Arabic, GCC commercial context, and startup
+  scenarios. Evaluates terminology, practical scenarios, and regional business norms.
+scoring_method: |
+  Rubric 1–5 converted to 0–100 per item: correctness, register, actionability.
+  Partial credit via rubric anchors in harness (Phase 4).
+evaluation_type: rubric_qa
+language: ar
+item_count: 25
+
+sample_questions:
+  - id: bk-001
+    sub_domain: terminology
+    difficulty: easy
+    question: "عرّف «الجولة التمويلية التأسيسية» (Seed round) في سياق startups."
+    gold_answer: "أول external equity funding لإثبات product-market fit بعد MVP أو prototype."
+
+  - id: bk-002
+    sub_domain: terminology
+    difficulty: medium
+    question: "ما الفرق بين «الإيرادات» و«الربح»؟"
+    gold_answer: "الإيرادات total sales؛ الربح revenues minus costs."
+
+  - id: bk-003
+    sub_domain: terminology
+    difficulty: medium
+    question: "ما المقصود بـ «Burn rate»؟"
+    gold_answer: "معدل صرف cash شهرياً قبل profitability."
+
+  - id: bk-004
+    sub_domain: terminology
+    difficulty: hard
+    question: "اشرح «حقوق الم liquidation preference» للمستثمر."
+    gold_answer: "أولوية استرداد capital عند exit قبل founders/common."
+
+  - id: bk-005
+    sub_domain: terminology
+    difficulty: easy
+    question: "ما «ال pitch deck»؟"
+    gold_answer: "عرض تقديمي concise للمستثمرين: problem, solution, market, traction, team, ask."
+
+  - id: bk-006
+    sub_domain: gcc_context
+    difficulty: medium
+    question: "ما دور «مجلس التعاون» في سياق business GCC؟"
+    gold_answer: "إطار regional coordination؛ facilitates trade and policy alignment among member states."
+
+  - id: bk-007
+    sub_domain: gcc_context
+    difficulty: easy
+    question: "ما المقصود بالمنطقة الحرة في سياق الاستثمار؟"
+    gold_answer: "منطقة ب incentives/regulations خاصة لجذب investment و exports."
+
+  - id: bk-008
+    sub_domain: gcc_context
+    difficulty: medium
+    question: "لماذا يُ register شركات في economic zones؟"
+    gold_answer: "tax/regulatory incentives، infrastructure، faster licensing."
+
+  - id: bk-009
+    sub_domain: scenarios
+    difficulty: medium
+    question: "startup B2B في الرياض: اذكر 3 خطوات GTM أولية."
+    gold_answer: "ICP definition، pilot clients، pricing، sales cycle، compliance."
+
+  - id: bk-010
+    sub_domain: scenarios
+    difficulty: hard
+    question: "partner يريد exclusivity في KSA — ما 3 negotiation points؟"
+    gold_answer: "territory، duration، minimums، termination، brand control."
+
+  - id: bk-011
+    sub_domain: scenarios
+    difficulty: medium
+    question: "cash runway 6 months — ما levers فورية؟"
+    gold_answer: "cut costs، accelerate revenue، raise bridge، delay hires."
+
+  - id: bk-012
+    sub_domain: formal_arabic
+    difficulty: medium
+    question: "اكتب جملة formal لطلب meeting مع investor."
+    gold_answer: "تحية + اسم + purpose + وقت مقترح + شكر — register رسمي."
+
+  - id: bk-013
+    sub_domain: formal_arabic
+    difficulty: easy
+    question: "ما الفرق بين «عزيزي» و«سعادة» في مراسلات business؟"
+    gold_answer: "«سعادة» ل senior officials؛ «عزيزي/عزيزتي» ل general business."
+
+  - id: bk-014
+    sub_domain: formal_arabic
+    difficulty: hard
+    question: "صِغ subject line ل email pitching SaaS ل bank."
+    gold_answer: "concise value prop + sector + compliance hint — formal Arabic."
+
+  - id: bk-015
+    sub_domain: entrepreneurship
+    difficulty: easy
+    question: "ما «product-market fit»؟"
+    gold_answer: "when product satisfies strong market demand repeatably."
+
+  - id: bk-016
+    sub_domain: entrepreneurship
+    difficulty: medium
+    question: "اذكر 4 metrics ل SaaS early-stage."
+    gold_answer: "MRR، churn، CAC، LTV، activation — any four."
+
+  - id: bk-017
+    sub_domain: entrepreneurship
+    difficulty: medium
+    question: "متى ت pivot vs persevere؟"
+    gold_answer: "weak retention + no ICP signal → pivot؛ strong niche traction → persevere."
+
+  - id: bk-018
+    sub_domain: documents
+    difficulty: hard
+    question: "ما clauses أساسية في MOU؟"
+    gold_answer: "parties، scope، confidentiality، term، non-binding unless stated."
+
+  - id: bk-019
+    sub_domain: documents
+    difficulty: medium
+    question: "ما executive summary في business plan؟"
+    gold_answer: "one-page overview: problem, solution, market, model, team, financials."
+
+  - id: bk-020
+    sub_domain: saudi_business
+    difficulty: medium
+    question: "لماذا «توطين» matter ل enterprise vendors في KSA؟"
+    gold_answer: "regulatory، nitaqat، government contracts، local support expectations."
+
+  - id: bk-021
+    sub_domain: saudi_business
+    difficulty: easy
+    question: "ما فائدة السجل التجاري للـ B2B contract؟"
+    gold_answer: "proves legal entity؛ required for invoicing and government dealings."
+
+  - id: bk-022
+    sub_domain: scenarios
+    difficulty: easy
+    question: "customer churn rose — first diagnostic step?"
+    gold_answer: "segment cohort analysis + exit interviews."
+
+  - id: bk-023
+    sub_domain: gcc_context
+    difficulty: hard
+    question: "expand من KSA إلى UAE — 3 compliance considerations."
+    gold_answer: "licensing، VAT/tax، data rules، local partner if required."
+
+  - id: bk-024
+    sub_domain: terminology
+    difficulty: medium
+    question: "ما «Unit economics»؟"
+    gold_answer: "profitability per unit/customer after variable costs."
+
+  - id: bk-025
+    sub_domain: entrepreneurship
+    difficulty: hard
+    question: "due diligence قبل acquisition — 3 focus areas."
+    gold_answer: "financials، legal/IP، customer concentration، tech debt."

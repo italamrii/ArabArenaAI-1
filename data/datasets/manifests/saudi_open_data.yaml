@@ -1,0 +1,33 @@
+# Dataset manifest — ArabArenaAI-1
+manifest_version: "1.0"
+status: proposed
+
+dataset_name: saudi-open-data
+source_url: "https://data.gov.sa/"
+country: SA
+language: ar-SA
+license: "L1 — Saudi Open Data Portal Terms (verify at collection)"
+license_class: L1
+domain: government
+collection_method: "API and bulk open-data downloads per dataset catalog; no authenticated scraping"
+expected_size: "~500MB–5GB aggregated (subset TBD after catalog audit)"
+quality_score: null  # Estimated pre-cleaning: 0.70 — assign after Phase 3
+legal_risk: low
+
+training_allowed: conditional  # Per-dataset terms on data.gov.sa
+redistribution_allowed: conditional
+pii_status: unknown  # Audit required per dataset subset
+
+notes: |
+  Saudi Open Data Portal — primary source for Saudi government statistics,
+  ministry datasets, and public administrative data. High priority for
+  Saudi-first knowledge (ADR-004). Each sub-dataset within the portal
+  requires its own license check; this manifest covers the portal program
+  as an inventory parent. Do not bulk-download until sub-datasets are
+  individually classified. Filter for Arabic content and Vision 2030-
+  adjacent economic indicators first.
+
+approved_by: null
+approved_date: null
+collection_date: null
+source_snapshot_ref: null

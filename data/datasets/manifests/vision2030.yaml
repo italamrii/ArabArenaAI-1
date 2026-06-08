@@ -1,0 +1,35 @@
+# Dataset manifest — ArabArenaAI-1
+manifest_version: "1.0"
+status: proposed
+
+dataset_name: vision2030-publications
+source_url: "https://www.vision2030.gov.sa/"
+country: SA
+language: ar-SA
+license: "L1 — Official government publications (verify copyright/terms at collection)"
+license_class: L1
+domain: government
+collection_method: "Manual crawl of publicly listed PDFs and HTML pages; respect robots.txt; no login bypass"
+expected_size: "~50MB–200MB text after extraction"
+quality_score: null  # Estimated pre-cleaning: 0.85 — assign after Phase 3
+legal_risk: low
+
+training_allowed: conditional
+redistribution_allowed: conditional
+pii_status: none
+
+notes: |
+  Vision 2030 official site — programs, giga-projects, economic diversification
+  plans, and policy narratives. Core Saudi-first knowledge source for benchmark
+  gold labels and fine-tuning. Content is time-sensitive: include source_date
+  on every extracted document. PDF extraction requires layout-aware parsing;
+  Arabic OCR quality must be verified. English pages may exist — filter or tag
+  by language. Not collected yet.
+
+  Legal review: docs/legal/licenses/vision2030-license-review.md
+  Legal status: PENDING REVIEW — collection blocked.
+
+approved_by: null
+approved_date: null
+collection_date: null
+source_snapshot_ref: null

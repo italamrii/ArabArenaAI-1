@@ -1,0 +1,33 @@
+# Dataset manifest — ArabArenaAI-1
+manifest_version: "1.0"
+status: proposed
+
+dataset_name: wikipedia-ar
+source_url: "https://dumps.wikimedia.org/arwiki/"
+country: MULTI
+language: ar
+license: "L2 — CC-BY-SA-3.0 (Wikipedia Arabic)"
+license_class: L2
+domain: academic
+collection_method: "Wikimedia dump download; extract article text; filter by SA/GCC relevance categories"
+expected_size: "~2GB–4GB compressed dump; ~400MB–800MB filtered Arabic text"
+quality_score: null  # Estimated pre-cleaning: 0.68 — assign after Phase 3
+legal_risk: low
+
+training_allowed: yes
+redistribution_allowed: conditional  # SA obligations apply to derivatives
+pii_status: unknown
+
+notes: |
+  Arabic Wikipedia — broad MSA encyclopedic coverage. Supports Arabic-first
+  fluency and general knowledge but is NOT a substitute for Saudi-specific
+  sources (vision2030, saudi_open_data). Apply aggressive quality filtering:
+  stub articles, citation-less claims, and vandalism. Use category filters
+  for Saudi Arabia, GCC, and business topics to boost regional signal.
+  Attribution required (L2). Share-alike may affect derivative weight
+  redistribution — legal review before Phase 8 public weight release.
+
+approved_by: null
+approved_date: null
+collection_date: null
+source_snapshot_ref: null

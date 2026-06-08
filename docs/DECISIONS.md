@@ -37,6 +37,21 @@ Copy this block for each new decision:
 
 ## Decision Log
 
+### ADR-004 — Saudi-first knowledge strategy
+
+| Field | Value |
+|-------|-------|
+| **Date** | 2026-06-08 |
+| **Status** | Accepted |
+| **Decision** | Prioritize **Saudi-specific knowledge sources** over generic Arabic or global corpora in dataset inventory, collection order, training mix, and benchmark design. Target initial training mix weighting: **~40% Saudi** · **~15% GCC** · **~25% Arabic (non-SA)** · **~10% business** · **~10% programming** — recalibrated after Phase 4 baseline. |
+| **Reason** | ArabArenaAI-1's differentiated value is Saudi and Gulf fidelity, not generic multilingual capability. Generic corpora (e.g. Arabic Wikipedia alone) cannot ground Vision 2030, Saudi government services, or local business norms. Saudi-first weighting aligns data investment with [VISION.md](VISION.md) and [METRICS.md](METRICS.md) release gates. |
+| **Alternatives considered** | **Arabic-only weighting (no SA priority)** — rejected; fails core mission. **Equal mix across all regions** — rejected; dilutes Saudi signal. **Saudi-only (exclude GCC/global)** — rejected; loses programming regression and bilingual technical coverage. **RAG-only without fine-tune** — deferred; may complement but not replace regional weights. |
+| **Consequences** | Manifest inventory must tag `country: SA` sources first (`saudi_open_data`, `vision2030` before `wikipedia_ar`). Collection budget and legal review capacity allocated to SA sources first. Wikipedia and global code corpora are **supporting**, not primary. Benchmark Saudi category is a **release gate**, not optional. Mix ratios must be recorded in experiment configs (Phase 5). |
+| **Owner** | Data + ML leads (placeholder) |
+| **Related** | [DATA_STRATEGY.md](DATA_STRATEGY.md) · [DATA_PIPELINE.md](DATA_PIPELINE.md) · [LICENSING_GUIDE.md](LICENSING_GUIDE.md) · [../data/datasets/manifests/](../data/datasets/manifests/) |
+
+---
+
 ### ADR-001 — Base model: Qwen3-30B-A3B-Instruct
 
 | Field | Value |
@@ -86,7 +101,7 @@ Copy this block for each new decision:
 
 | Topic | Target phase | Notes |
 |-------|--------------|-------|
-| Corpus mix ratios (SA / GCC / AR / business / code) | Phase 2 | Block dataset ingest at scale |
+| Corpus mix ratios (SA / GCC / AR / business / code) | Phase 2 | **ADR-004 accepted** — monitor in manifests |
 | LoRA rank and target modules | Phase 5 | After Phase 4 baseline |
 | Inference runtime (vLLM vs TGI vs custom) | Phase 7 | After adapter size known |
 | Public release: weights vs API-only | Phase 8 | Legal + business review |

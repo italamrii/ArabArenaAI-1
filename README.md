@@ -175,9 +175,22 @@ ArabArenaAI-1/
 | [docs/DECISIONS.md](docs/DECISIONS.md) | Architectural decision records (ADR) |
 | [docs/METRICS.md](docs/METRICS.md) | KPIs and release gate thresholds |
 | [docs/DATA_STRATEGY.md](docs/DATA_STRATEGY.md) | Data sources, licensing, quality, cleaning |
+| [docs/DATA_ACQUISITION_PLAN.md](docs/DATA_ACQUISITION_PLAN.md) | Top 20 datasets, tiers, acquisition roadmap |
+| [docs/DATA_MOAT_STRATEGY.md](docs/DATA_MOAT_STRATEGY.md) | Why data is the competitive moat |
+| [docs/DATA_RISKS.md](docs/DATA_RISKS.md) | Data risk register and mitigations |
+| [docs/DATA_TARGETS.md](docs/DATA_TARGETS.md) | 12-month quantitative targets |
+| [docs/DATA_PIPELINE.md](docs/DATA_PIPELINE.md) | Source → training data flow |
+| [docs/LICENSING_GUIDE.md](docs/LICENSING_GUIDE.md) | L0–L4 license classes and workflow |
+| [docs/legal/](docs/legal/) | Legal review pipeline and approval gates |
+| [docs/legal/APPROVAL_WORKFLOW.md](docs/legal/APPROVAL_WORKFLOW.md) | Proposed → training authorization lifecycle |
+| [docs/legal/licenses/vision2030-license-review.md](docs/legal/licenses/vision2030-license-review.md) | Vision 2030 license review (**PENDING REVIEW**) |
 | [docs/DATASET_MANIFEST_TEMPLATE.md](docs/DATASET_MANIFEST_TEMPLATE.md) | Per-dataset manifest schema |
+| [data/datasets/manifests/](data/datasets/manifests/) | Dataset inventory registry |
 | [docs/MODEL_STRATEGY.md](docs/MODEL_STRATEGY.md) | Base model selection and comparisons |
 | [docs/BENCHMARKS.md](docs/BENCHMARKS.md) | Evaluation categories and scoring |
+| [docs/EVALUATION_FRAMEWORK.md](docs/EVALUATION_FRAMEWORK.md) | Pass/fail criteria and benchmark weighting |
+| [docs/MODEL_RELEASE_POLICY.md](docs/MODEL_RELEASE_POLICY.md) | Release gates and minimum scores |
+| [evaluation/benchmarks/](evaluation/benchmarks/) | Frozen benchmark items (150 seed questions) |
 | [research/FUTURE_IDEAS.md](research/FUTURE_IDEAS.md) | RAG, agents, foundation model path |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | How to contribute |
 

@@ -1,0 +1,215 @@
+# ArabArenaAI-1 Benchmark — Summarization
+benchmark_version: "0.1.0"
+benchmark_name: summarization
+description: |
+  Condense Arabic (and mixed Arabic–English) passages into faithful summaries.
+  Penalizes hallucinated facts not present in source text.
+scoring_method: |
+  ROUGE-L vs reference + rubric (consistency, omission, hallucination).
+  −1.0 rubric penalty per unsupported factual claim in output.
+evaluation_type: summarization
+language: ar
+item_count: 25
+
+sample_questions:
+  - id: sum-001
+    sub_domain: news
+    difficulty: easy
+    question: |
+      Source: «افتتحت وزارة التجارة مكتباً جديداً في الرياض لخدمة رواد الأعمال. يقدم المكتب استشارات تسجيل الشركات وربط المستثمرين. ساعات العمل من الأحد إلى الخميس.»
+      Summarize in 2 Arabic bullets.
+    gold_answer: |
+      - افتتاح مكتب وزارة التجارة في الرياض لدعم رواد الأعمال.
+      - خدمات: استشارات تسجيل شركات وربط مستثمرين؛ الدوام أحد–خميس.
+
+  - id: sum-002
+    sub_domain: business
+    difficulty: medium
+    question: |
+      Source: «أعلنت الشركة عن نمو إيراداتها 18% year-on-year مع ارتفاع churn إلى 4%. ت plans hiring in sales.»
+      Executive summary (3 sentences, formal Arabic).
+    gold_answer: "نمو إيرادات 18% سنوياً؛ churn 4%؛ plans hiring in sales — formal Arabic summary."
+
+  - id: sum-003
+    sub_domain: vision2030
+    difficulty: medium
+    question: |
+      Source: «رؤية 2030 تهدف لتنويع الاقتصاد، تمكين المواطنين، وجعل المملكة hub logistics.»
+      Summarize in one Arabic paragraph.
+    gold_answer: "رؤية 2030: diversify economy، empower citizens، logistics hub."
+
+  - id: sum-004
+    sub_domain: news
+    difficulty: easy
+    question: |
+      Source: «أطلقت المنصة ميزة الدفع الإلكتروني أمس. الميزة available للمستخدمين في الرياض فقط حالياً.»
+      One-sentence summary.
+    gold_answer: "إطلاق ميزة دفع إلكتروني أمس، available الرياض initially."
+
+  - id: sum-005
+    sub_domain: business
+    difficulty: hard
+    question: |
+      Source: «Board approved $5M budget for AI lab in Dammam over 3 years focusing NLP and speech.»
+      Arabic bullet summary (3 bullets).
+    gold_answer: "موافقة مجلس على budget 5M$ لم lab AI في الدمام 3 سنوات؛ تركيز NLP وspeech."
+
+  - id: sum-006
+    sub_domain: mixed
+    difficulty: medium
+    question: |
+      Source: «uses Kubernetes on AWS EKS with Terraform IaC. الفريق Saudi-based.»
+      Summarize preserving technical terms.
+    gold_answer: "Kubernetes on AWS EKS + Terraform IaC؛ فريق سعودي."
+
+  - id: sum-007
+    sub_domain: news
+    difficulty: medium
+    question: |
+      Source: «بلغ مؤشر تداول مستوى records Q1 amid rising oil prices and IPO activity.»
+      2-sentence Arabic summary.
+    gold_answer: "Tadawul records Q1؛ factors: oil prices، IPO activity."
+
+  - id: sum-008
+    sub_domain: business
+    difficulty: easy
+    question: |
+      Source: «Partner signed MOU for 12 months non-exclusive distribution in GCC.»
+      One bullet Arabic.
+    gold_answer: "MOU 12 شهر distribution GCC non-exclusive."
+
+  - id: sum-009
+    sub_domain: policy
+    difficulty: hard
+    question: |
+      Source: «PDPL requires consent for cross-border transfers except approved adequacy cases. Penalties apply.»
+      Summarize for executive (Arabic).
+    gold_answer: "PDPL: consent for cross-border transfers except adequacy؛ penalties."
+
+  - id: sum-010
+    sub_domain: news
+    difficulty: easy
+    question: |
+      Source: «Opened new branch in Jeddah; 20 jobs; training program for Saudization.»
+      2 bullets Arabic.
+    gold_answer: "فرع جeddah؛ 20 وظيفة؛ برنامج ت training Saudization."
+
+  - id: sum-011
+    sub_domain: business
+    difficulty: medium
+    question: |
+      Source: «Q2 gross margin 42%, opex up 8% due to cloud costs.»
+      Summary with numbers preserved.
+    gold_answer: "Q2 gross margin 42%؛ opex +8% cloud costs."
+
+  - id: sum-012
+    sub_domain: mixed
+    difficulty: medium
+    question: |
+      Source: «API latency p95 120ms after cache layer on Redis.»
+      One Arabic sentence.
+    gold_answer: "API latency p95 120ms بعد Redis cache."
+
+  - id: sum-013
+    sub_domain: vision2030
+    difficulty: easy
+    question: |
+      Source: «NEOM focuses on renewable energy and advanced manufacturing zones.»
+      Arabic one-liner.
+    gold_answer: "NEOM: renewable energy + advanced manufacturing."
+
+  - id: sum-014
+    sub_domain: news
+    difficulty: hard
+    question: |
+      Source: «Ministry warned against unlicensed fintech apps; users should verify SAMA registration.»
+      Summary + action item.
+    gold_answer: "تحذير من apps fintech غير مرخصة؛ verify SAMA registration."
+
+  - id: sum-015
+    sub_domain: business
+    difficulty: medium
+    question: |
+      Source: «Startup runway 9 months; seeking bridge round; product in beta with 50 pilots.»
+      3 bullets.
+    gold_answer: "runway 9 months؛ bridge round؛ beta 50 pilots."
+
+  - id: sum-016
+    sub_domain: policy
+    difficulty: medium
+    question: |
+      Source: «Remote work policy: max 2 days/week except approved roles.»
+      Arabic summary.
+    gold_answer: "remote max 2 days/week except approved roles."
+
+  - id: sum-017
+    sub_domain: news
+    difficulty: easy
+    question: |
+      Source: «Conference on AI in Arabic NLP held in Riyadh with 500 attendees.»
+      One sentence.
+    gold_answer: "م conference AI Arabic NLP Riyadh 500 attendees."
+
+  - id: sum-018
+    sub_domain: business
+    difficulty: hard
+    question: |
+      Source: «Customer concentration: top client 35% revenue; mitigation via diversification plan 2026.»
+      Executive summary Arabic.
+    gold_answer: "top client 35% revenue؛ mitigation diversification 2026."
+
+  - id: sum-019
+    sub_domain: mixed
+    difficulty: easy
+    question: |
+      Source: «SLA uptime 99.9%; maintenance window Saturday 2–4 AM AST.»
+      Bullet summary.
+    gold_answer: "SLA 99.9%؛ maintenance Sat 2–4 AM AST."
+
+  - id: sum-020
+    sub_domain: news
+    difficulty: medium
+    question: |
+      Source: «Saudi exports non-oil rose 5% in January driven by petrochemicals.»
+      Arabic summary.
+    gold_answer: "ص exports non-oil +5% January؛ petrochemicals driver."
+
+  - id: sum-021
+    sub_domain: business
+    difficulty: medium
+    question: |
+      Source: «HR announced Nitaqat green status and hiring plan for 15 roles.»
+      2 bullets.
+    gold_answer: "Nitaqat green؛ hiring 15 roles."
+
+  - id: sum-022
+    sub_domain: policy
+    difficulty: hard
+    question: |
+      Source: «ZATCA e-invoicing Phase 2 integration mandatory for SMEs by set date.»
+      Summary with compliance note.
+    gold_answer: "ZATCA e-invoicing Phase 2 mandatory SMEs by date."
+
+  - id: sum-023
+    sub_domain: vision2030
+    difficulty: medium
+    question: |
+      Source: «Quality of Life program expands entertainment venues and sports clubs nationwide.»
+      Arabic paragraph.
+    gold_answer: "برنامج quality of life: entertainment + sports nationwide."
+
+  - id: sum-024
+    sub_domain: news
+    difficulty: easy
+    question: |
+      Source: «Sandstorm caused flight delays in Riyadh; travelers advised to check airlines.»
+      One sentence Arabic.
+    gold_answer: "عاصفة رملية delays Riyadh flights؛ check airlines."
+
+  - id: sum-025
+    sub_domain: business
+    difficulty: medium
+    question: |
+      Source: «Vendor contract renewed 2 years; pricing capped at 3% annual increase.»
+      Summary preserving terms.
+    gold_answer: "renewal 2 years؛ pricing cap 3% annual increase."

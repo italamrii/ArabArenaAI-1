@@ -1,0 +1,247 @@
+# ArabArenaAI-1 Benchmark — Programming
+benchmark_version: "0.1.0"
+benchmark_name: programming
+description: |
+  Code generation and debugging across Python, Java, JavaScript, SQL, and APIs.
+  Problem statements may be Arabic; code answers in standard language syntax.
+scoring_method: |
+  Pass@1 via executable unit tests where defined; static rubric for design questions.
+  Category score = (passed / 25) × 100.
+evaluation_type: code_generation
+language: mixed-ar-en
+item_count: 25
+
+sample_questions:
+  # --- Python (5) ---
+  - id: prog-py-001
+    sub_domain: python
+    difficulty: easy
+    question: "اكتب دالة Python `is_palindrome(s)` تُرجع True إذا كان النص palindrome."
+    gold_answer: |
+      def is_palindrome(s):
+          t = s.lower().replace(" ", "")
+          return t == t[::-1]
+
+  - id: prog-py-002
+    sub_domain: python
+    difficulty: medium
+    question: "اكتب Python: `top_k_frequent(nums, k)` تُرجع k عناصر الأكثر تكراراً."
+    gold_answer: |
+      from collections import Counter
+      def top_k_frequent(nums, k):
+          return [x for x, _ in Counter(nums).most_common(k)]
+
+  - id: prog-py-003
+    sub_domain: python
+    difficulty: easy
+    question: "اقرأ ملف `data.txt` سطراً سطراً واطبع الأسطر غير الفارغة."
+    gold_answer: |
+      with open("data.txt", encoding="utf-8") as f:
+          for line in f:
+              if line.strip():
+                  print(line.rstrip())
+
+  - id: prog-py-004
+    sub_domain: python
+    difficulty: medium
+    question: "اكتب decorator `@timer` يقيس وقت تنفيذ الدالة."
+    gold_answer: |
+      import time
+      def timer(fn):
+          def wrapper(*a, **k):
+              start = time.time()
+              r = fn(*a, **k)
+              print(time.time() - start)
+              return r
+          return wrapper
+
+  - id: prog-py-005
+    sub_domain: python
+    difficulty: hard
+    question: "Implement binary search on sorted list `arr` for `target`."
+    gold_answer: |
+      def binary_search(arr, target):
+          lo, hi = 0, len(arr) - 1
+          while lo <= hi:
+              mid = (lo + hi) // 2
+              if arr[mid] == target: return mid
+              if arr[mid] < target: lo = mid + 1
+              else: hi = mid - 1
+          return -1
+
+  # --- Java (5) ---
+  - id: prog-java-001
+    sub_domain: java
+    difficulty: easy
+    question: "اكتب Java method `max(int a, int b)`."
+    gold_answer: |
+      public static int max(int a, int b) { return a >= b ? a : b; }
+
+  - id: prog-java-002
+    sub_domain: java
+    difficulty: medium
+    question: "اكتب Java: reverse a String."
+    gold_answer: |
+      public static String reverse(String s) {
+          return new StringBuilder(s).reverse().toString();
+      }
+
+  - id: prog-java-003
+    sub_domain: java
+    difficulty: medium
+    question: "Implement Java class `Point` with x,y and distance from origin."
+    gold_answer: |
+      public class Point {
+          double x, y;
+          Point(double x, double y) { this.x = x; this.y = y; }
+          double distance() { return Math.hypot(x, y); }
+      }
+
+  - id: prog-java-004
+    sub_domain: java
+    difficulty: hard
+    question: "Java: thread-safe singleton (lazy init)."
+    gold_answer: |
+      public class Singleton {
+          private static volatile Singleton instance;
+          private Singleton() {}
+          public static Singleton getInstance() {
+              if (instance == null) synchronized (Singleton.class) {
+                  if (instance == null) instance = new Singleton();
+              }
+              return instance;
+          }
+      }
+
+  - id: prog-java-005
+    sub_domain: java
+    difficulty: easy
+    question: "Java: check if array contains duplicate integers."
+    gold_answer: |
+      import java.util.HashSet;
+      boolean hasDuplicate(int[] nums) {
+          HashSet<Integer> s = new HashSet<>();
+          for (int n : nums) if (!s.add(n)) return true;
+          return false;
+      }
+
+  # --- JavaScript (5) ---
+  - id: prog-js-001
+    sub_domain: javascript
+    difficulty: easy
+    question: "JavaScript: function `sumArray(arr)` returns sum."
+    gold_answer: |
+      function sumArray(arr) { return arr.reduce((a, b) => a + b, 0); }
+
+  - id: prog-js-002
+    sub_domain: javascript
+    difficulty: medium
+    question: "JavaScript: debounce function `debounce(fn, ms)`."
+    gold_answer: |
+      function debounce(fn, ms) {
+        let t;
+        return (...args) => {
+          clearTimeout(t);
+          t = setTimeout(() => fn(...args), ms);
+        };
+      }
+
+  - id: prog-js-003
+    sub_domain: javascript
+    difficulty: medium
+    question: "JavaScript: fetch JSON from `/api/users` and return parsed data."
+    gold_answer: |
+      async function getUsers() {
+        const res = await fetch("/api/users");
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.json();
+      }
+
+  - id: prog-js-004
+    sub_domain: javascript
+    difficulty: hard
+    question: "JavaScript: deep clone plain object (no functions)."
+    gold_answer: |
+      function deepClone(o) {
+        if (o === null || typeof o !== "object") return o;
+        if (Array.isArray(o)) return o.map(deepClone);
+        return Object.fromEntries(
+          Object.entries(o).map(([k, v]) => [k, deepClone(v)])
+        );
+      }
+
+  - id: prog-js-005
+    sub_domain: javascript
+    difficulty: easy
+    question: "JavaScript: filter even numbers from array."
+    gold_answer: |
+      const evens = arr.filter(n => n % 2 === 0);
+
+  # --- SQL (5) ---
+  - id: prog-sql-001
+    sub_domain: sql
+    difficulty: easy
+    question: "SQL: select all columns from `employees` where salary > 5000."
+    gold_answer: "SELECT * FROM employees WHERE salary > 5000;"
+
+  - id: prog-sql-002
+    sub_domain: sql
+    difficulty: medium
+    question: "SQL: count orders per customer_id from `orders`."
+    gold_answer: |
+      SELECT customer_id, COUNT(*) AS order_count
+      FROM orders GROUP BY customer_id;
+
+  - id: prog-sql-003
+    sub_domain: sql
+    difficulty: medium
+    question: "SQL: join `users` and `profiles` on user_id, return name and bio."
+    gold_answer: |
+      SELECT u.name, p.bio
+      FROM users u JOIN profiles p ON u.id = p.user_id;
+
+  - id: prog-sql-004
+    sub_domain: sql
+    difficulty: hard
+    question: "SQL: second highest salary from `employees`."
+    gold_answer: |
+      SELECT MAX(salary) FROM employees
+      WHERE salary < (SELECT MAX(salary) FROM employees);
+
+  - id: prog-sql-005
+    sub_domain: sql
+    difficulty: easy
+    question: "SQL: delete rows in `logs` older than 30 days."
+    gold_answer: |
+      DELETE FROM logs WHERE created_at < NOW() - INTERVAL '30 days';
+
+  # --- APIs (5) ---
+  - id: prog-api-001
+    sub_domain: apis
+    difficulty: easy
+    question: "ما الفرق بين HTTP GET و POST؟"
+    gold_answer: "GET retrieves (idempotent); POST creates/submits payload (non-idempotent typically)."
+
+  - id: prog-api-002
+    sub_domain: apis
+    difficulty: medium
+    question: "Design REST endpoint to create user — method, path, status code."
+    gold_answer: "POST /users → 201 Created with Location header and user body."
+
+  - id: prog-api-003
+    sub_domain: apis
+    difficulty: medium
+    question: "ما HTTP status code للـ unauthorized missing token?"
+    gold_answer: "401 Unauthorized."
+
+  - id: prog-api-004
+    sub_domain: apis
+    difficulty: hard
+    question: "Explain idempotency for PUT vs PATCH."
+    gold_answer: "PUT replaces resource idempotently; PATCH partial update — idempotency depends on semantics."
+
+  - id: prog-api-005
+    sub_domain: apis
+    difficulty: medium
+    question: "OpenAPI: why document error schemas?"
+    gold_answer: "clients handle failures consistently; codegen; contract testing."

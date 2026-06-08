@@ -1,0 +1,163 @@
+# ArabArenaAI-1 Benchmark — Arabic Reasoning
+benchmark_version: "0.1.0"
+benchmark_name: arabic_reasoning
+description: |
+  Logical and multi-step reasoning with Arabic prompts and Arabic answers. Covers
+  deduction, arithmetic word problems, constraints, ambiguity, counterfactuals,
+  and planning — not English chain-of-thought with Arabic output.
+scoring_method: |
+  Binary or partial credit (0, 0.5, 1) per item. Normalized category score 0–100.
+evaluation_type: reasoning_qa
+language: ar
+item_count: 25
+
+sample_questions:
+  - id: ar-reas-001
+    sub_domain: deduction
+    difficulty: easy
+    question: "إذا كان كل أ من ب، وكل ب من ج، فهل كل أ من ج؟"
+    gold_answer: "نعم، بسبب التسلسل المنطقي (التعدي)."
+
+  - id: ar-reas-002
+    sub_domain: deduction
+    difficulty: medium
+    question: "بعض الطلاب ناجحون. كل الناجحين حصلوا على مكافأة. هل كل الطلاب حصلوا على مكافأة؟"
+    gold_answer: "لا؛ فقط الناجحون حصلوا على مكافأة."
+
+  - id: ar-reas-003
+    sub_domain: arithmetic
+    difficulty: easy
+    question: "اشترى خالد 4 دفاتر بـ 12 ريالاً للدفتر. كم دفع إجمالاً؟"
+    gold_answer: "48 ريالاً."
+
+  - id: ar-reas-004
+    sub_domain: arithmetic
+    difficulty: medium
+    question: "راتب موظف 8000 ريال. زاد 10% ثم خُصم 500 ريال. ما الراتب النهائي؟"
+    gold_answer: "8300 ريال: 8000×1.1=8800؛ 8800−500=8300."
+
+  - id: ar-reas-005
+    sub_domain: arithmetic
+    difficulty: hard
+    question: "مخزون 500 وحدة، يُستهلك 20% شهرياً. كم يبقى بعد شهرين؟"
+    gold_answer: "320 وحدة: بعد شهر 400، بعد شهرين 320."
+
+  - id: ar-reas-006
+    sub_domain: constraints
+    difficulty: easy
+    question: "أ > ب > ج. من الأصغر؟"
+    gold_answer: "ج."
+
+  - id: ar-reas-007
+    sub_domain: constraints
+    difficulty: medium
+    question: "لا يجلس A بجانب B. C يجلس بينهما. هل الترتيب A-C-B ممكن؟"
+    gold_answer: "لا؛ C بينهما يعني A و B غير متجاورين — A-C-B يجعل A و B متباعدين بـ C، مقبول إن «بجانب» تعني adjacent مباشرة: لا A-C-B لأن B ليس adjacent A. الإجابة: غير ممكن إذا adjacent مطلوب."
+
+  - id: ar-reas-008
+    sub_domain: constraints
+    difficulty: hard
+    question: "ثلاث مهام: P(2س)، Q(1س)، R(3س). مهلة 4 ساعات. هل تنجز sequentially؟"
+    gold_answer: "لا؛ 2+1+3=6 > 4. تحتاج parallel أو تقليص."
+
+  - id: ar-reas-009
+    sub_domain: ambiguity
+    difficulty: medium
+    question: "«رأيت رجلاً بالمنظار على الشاطئ» — ما الغموض؟"
+    gold_answer: "هل الرجل يحمل منظاراً أم يُرى بالمنظار؟"
+
+  - id: ar-reas-010
+    sub_domain: ambiguity
+    difficulty: easy
+    question: "«وافق مدير الموظف على الخطة» — من وافق على من؟"
+    gold_answer: "غموض: المدير وافق على خطة الموظف، أو الموظف وافق على خطة المدير — يحتاج سياق."
+
+  - id: ar-reas-011
+    sub_domain: counterfactual
+    difficulty: medium
+    question: "لو أُلغيت رسوم ترخيص المنشآت الصغيرة، ماذا يُتوقع على عدد التسجيلات قصير الأمد؟"
+    gold_answer: "زيادة عدد التسجيلات الجديدة؛ منافسة أعلى؛ جودة متنوعة."
+
+  - id: ar-reas-012
+    sub_domain: counterfactual
+    difficulty: easy
+    question: "لو تأخر إطلاق المنتج شهراً، كيف يتأثر cash runway لشركة ناشئة؟"
+    gold_answer: "يزداد burn دون إيراد؛ قد ينقص runway — يحتاج تخفيض costs أو تمويل."
+
+  - id: ar-reas-013
+    sub_domain: planning
+    difficulty: medium
+    question: "رتّب: (1) اختبار MVP (2) بناء MVP (3) مقابلات عملاء (4) تسجيل شركة."
+    gold_answer: "3 → 4 → 2 → 1 (مقابلات، تسجيل، بناء، اختبار)."
+
+  - id: ar-reas-014
+    sub_domain: planning
+    difficulty: easy
+    question: "8 ساعات عمل: اجتماع 2، برمجة 3، مراجعة 1. كم للاستراحة؟"
+    gold_answer: "ساعتان."
+
+  - id: ar-reas-015
+    sub_domain: deduction
+    difficulty: hard
+    question: "لا قط يسبح. بعض الحيوانات الأليفة قطط. هل «بعض الأليفة يسبح»؟"
+    gold_answer: "لا يُستنتج؛ القطط قد لا تسبح لكن other pets might."
+
+  - id: ar-reas-016
+    sub_domain: deduction
+    difficulty: medium
+    question: "إذا أمطرت، تُلغى الرحلة. لم تُلغَ الرحلة. هل أمطرت؟"
+    gold_answer: "لا يُستنتج عدم المطر (denying the consequent fallacy)."
+
+  - id: ar-reas-017
+    sub_domain: arithmetic
+    difficulty: easy
+    question: "قسمة 15 على 3/5."
+    gold_answer: "25."
+
+  - id: ar-reas-018
+    sub_domain: arithmetic
+    difficulty: medium
+    question: "سعر 200 ريال بعد خصم 25%. ما السعر الأصلي؟"
+    gold_answer: "266.67 ريال تقريباً: 200 = 0.75×original."
+
+  - id: ar-reas-019
+    sub_domain: constraints
+    difficulty: medium
+    question: "Meeting rooms: A seats 4, B seats 6. Team 8. هل room واحد enough؟"
+    gold_answer: "لا؛ أكبر غرفة 6. تحتاج غرفتين أو larger room."
+
+  - id: ar-reas-020
+    sub_domain: counterfactual
+    difficulty: hard
+    question: "لو فرضت Saudi entity data residency، أين يُ host SaaS logically؟"
+    gold_answer: "مراكز بيانات داخل المملكة أو certified region — compliance first."
+
+  - id: ar-reas-021
+    sub_domain: planning
+    difficulty: hard
+    question: "قبل microservices split: ما أول خطوة risk reduction؟"
+    gold_answer: "observability + integration tests + domain boundaries."
+
+  - id: ar-reas-022
+    sub_domain: ambiguity
+    difficulty: medium
+    question: "«نشرت الشركة تقرير نمو 2024 في 2025» — متى النمو ومتى النشر؟"
+    gold_answer: "النمو 2024؛ النشر 2025."
+
+  - id: ar-reas-023
+    sub_domain: deduction
+    difficulty: easy
+    question: "كل المربعات مستطيلات. هل كل المستطيلات مربعات؟"
+    gold_answer: "لا."
+
+  - id: ar-reas-024
+    sub_domain: counterfactual
+    difficulty: medium
+    question: "لو أُغلقت المكاتب لعاصفة رملية، ما policy change منطقي؟"
+    gold_answer: "remote work؛ تأجيل meetings؛ continuity."
+
+  - id: ar-reas-025
+    sub_domain: planning
+    difficulty: medium
+    question: "Launch في 90 يوم: MVP، امتثال، beta — أي خطوتان أولاً؟"
+    gold_answer: "امتثال/سجل + MVP scope؛ beta قبل launch."
