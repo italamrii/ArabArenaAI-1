@@ -40,33 +40,66 @@ env/
 Thumbs.db
 desktop.ini
 
-# Models & weights (never commit large artifacts)
-models/**/*.bin
-models/**/*.safetensors
-models/**/*.gguf
-models/**/*.pt
-models/**/*.pth
-models/**/*.onnx
-*.ckpt
+# ---------------------------------------------------------------------------
+# Large datasets, model weights, checkpoints, and generated artifacts
+# are NOT stored in this repository. Use external storage (HF Hub, R2, S3).
+# Allowed in-repo: .gitkeep, README.md, and small files under samples/
+# ---------------------------------------------------------------------------
 
-# Data (raw and processed datasets stay local or in object storage)
-data/datasets/raw/**
-data/datasets/processed/**
+# Dataset directories
+data/datasets/raw/*
 !data/datasets/raw/.gitkeep
-!data/datasets/processed/.gitkeep
+!data/datasets/raw/README.md
 
-# Training artifacts
-training/experiments/**
+data/datasets/processed/*
+!data/datasets/processed/.gitkeep
+!data/datasets/processed/README.md
+
+# Model artifacts
+models/*
+!models/.gitkeep
+!models/README.md
+
+# Training experiment outputs
+training/experiments/*
 !training/experiments/.gitkeep
+
 training/**/wandb/
 training/**/runs/
-training/**/checkpoints/
 training/**/logs/
 
 # Evaluation outputs
-evaluation/reports/**
+evaluation/reports/*
 !evaluation/reports/.gitkeep
+
 evaluation/benchmarks/results/
+
+# Generated outputs and checkpoints
+outputs/*
+!outputs/.gitkeep
+!outputs/README.md
+
+checkpoints/*
+!checkpoints/.gitkeep
+
+# Large binary and data file formats (repo-wide)
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.gguf
+*.parquet
+*.jsonl
+*.arrow
+*.csv
+*.zip
+*.tar
+*.tar.gz
+
+# Small sample files only — exception to rules above
+!samples/
+!samples/**
 
 # Secrets & environment
 .env

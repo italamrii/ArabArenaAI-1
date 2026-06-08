@@ -1,0 +1,32 @@
+# CODEOWNERS — ArabArenaAI-1
+# ---------------------------------------------------------------------------
+# Replace placeholder teams with real GitHub usernames or org teams before
+# Phase 2. CODEOWNERS requires branch protection to enforce reviews.
+# ---------------------------------------------------------------------------
+# Syntax: path/pattern @owner @optional-second-owner
+# Docs: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+# ---------------------------------------------------------------------------
+
+# Default fallback (replace with tech lead or core maintainers)
+*                       @TBD-core-maintainers
+
+# Strategy, vision, metrics, ADRs, and benchmark definitions
+/docs/                  @TBD-docs-team @TBD-ml-lead
+
+# Dataset manifests, data directory structure, and data-related docs
+/data/                  @TBD-data-team @TBD-legal-review
+
+# Training configs and experiment metadata (no weights in git)
+/training/              @TBD-ml-team @TBD-mlops
+
+# Benchmark items, eval reports metadata, and scoring specs
+/evaluation/            @TBD-eval-team @TBD-ml-lead
+
+# Research notes and long-horizon architecture explorations
+/research/              @TBD-research-team @TBD-ml-lead
+
+# Root governance files
+/README.md              @TBD-docs-team @TBD-ml-lead
+/ROADMAP.md             @TBD-docs-team @TBD-ml-lead
+/CONTRIBUTING.md        @TBD-docs-team
+/.github/               @TBD-core-maintainers

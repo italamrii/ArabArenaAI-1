@@ -51,6 +51,23 @@ The model should deeply understand Saudi culture, government services, Vision 20
 
 ---
 
+## Project Principles
+
+These principles govern every phase — from dataset selection to public release:
+
+| Principle | Commitment |
+|-----------|------------|
+| **Quality over quantity** | Curated, licensed, high-scoring data beats large noisy crawls. Reject corpora that fail quality gates. |
+| **Arabic-first** | Arabic reasoning, register, and typography are designed in — not translated from English behavior. |
+| **Saudi-first** | Saudi context is the default for data weighting, evaluation, and product behavior. |
+| **Legally compliant datasets only** | No source enters the pipeline without a recorded license and approval (see [docs/DATA_STRATEGY.md](docs/DATA_STRATEGY.md)). |
+| **Reproducible experiments** | Every run logs model ID, data snapshot, config hash, seed, and prompt template version. |
+| **Transparent benchmarking** | Scores, limitations, and methodology are published honestly — no benchmark theater. |
+
+Full vision and non-goals: [docs/VISION.md](docs/VISION.md). Architectural decisions: [docs/DECISIONS.md](docs/DECISIONS.md). KPIs: [docs/METRICS.md](docs/METRICS.md).
+
+---
+
 ## Saudi-First Strategy
 
 **Saudi-first** means Saudi context is the default lens — not an optional locale pack.
@@ -145,6 +162,8 @@ ArabArenaAI-1/
 └── tests/                  Test suite (future)
 ```
 
+> **Storage policy:** Large datasets, model weights, checkpoints, and generated artifacts are not stored in this repository. They will be managed through external storage such as Hugging Face Hub, Hugging Face Datasets, Cloudflare R2, or S3.
+
 ---
 
 ## Documentation Index
@@ -152,7 +171,11 @@ ArabArenaAI-1/
 | Document | Description |
 |----------|-------------|
 | [ROADMAP.md](ROADMAP.md) | Phased delivery plan (Phases 1–9) |
+| [docs/VISION.md](docs/VISION.md) | Mission, success/failure, non-goals |
+| [docs/DECISIONS.md](docs/DECISIONS.md) | Architectural decision records (ADR) |
+| [docs/METRICS.md](docs/METRICS.md) | KPIs and release gate thresholds |
 | [docs/DATA_STRATEGY.md](docs/DATA_STRATEGY.md) | Data sources, licensing, quality, cleaning |
+| [docs/DATASET_MANIFEST_TEMPLATE.md](docs/DATASET_MANIFEST_TEMPLATE.md) | Per-dataset manifest schema |
 | [docs/MODEL_STRATEGY.md](docs/MODEL_STRATEGY.md) | Base model selection and comparisons |
 | [docs/BENCHMARKS.md](docs/BENCHMARKS.md) | Evaluation categories and scoring |
 | [research/FUTURE_IDEAS.md](research/FUTURE_IDEAS.md) | RAG, agents, foundation model path |
