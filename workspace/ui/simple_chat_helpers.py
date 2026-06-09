@@ -8,6 +8,12 @@ from typing import Any
 
 from evaluation.runners.base_runner import BaseRunner, RunnerError
 from evaluation.runners.runner_factory import create_runner
+from workspace.personality import (
+    InteractionMode,
+    apply_response_formatting,
+    build_system_prompt,
+    detect_interaction_mode,
+)
 from workspace.services.attachment_service import (
     ALLOWED_EXTENSIONS,
     IMAGE_UNSUPPORTED_MESSAGE,
@@ -20,14 +26,11 @@ from workspace.services.attachment_service import (
 
 DEFAULT_PROVIDER = os.getenv("WORKSPACE_DEFAULT_PROVIDER", "qwen").strip().lower() or "qwen"
 DEFAULT_MODEL = os.getenv("QWEN_MODEL", "qwen3:8b").strip() or "qwen3:8b"
-DEFAULT_SYSTEM_PROMPT = (
-    "أنت مساعد ArabArena AI. أجب بالعربية ما لم يطلب المستخدم غير ذلك. "
-    "كن واضحاً ومباشراً."
-)
+DEFAULT_SYSTEM_PROMPT = build_system_prompt(InteractionMode.GENERAL)
 MOCK_FALLBACK_WARNING = (
     "تعذّر الاتصال بالنموذج المطلوب. تم استخدام وضع تجريبي مؤقت."
 )
-CHAT_PLACEHOLDER = "اكتب سؤالك هنا..."
+CHAT_PLACEHOLDER = "اكتب رسالتك..."
 SEARCH_PLACEHOLDER = "ابحث في المحادثات أو المواضيع..."
 SEND_BUTTON_LABEL = "اسأل عرب أرينا"
 CHAT_SUBTITLE = "اسأل عرب أرينا — مساعدك الذكي للأعمال والأفكار"
@@ -179,14 +182,18 @@ def generate_chat_response(
     provider: str | None = None,
     model_name: str | None = None,
     system_prompt: str | None = None,
+    mode: InteractionMode | None = None,
 ) -> tuple[str, str | None]:
-    """Generate assistant text with provider fallback to mock on failure."""
+    """Generate assistant text with personality layer, provider fallback, and formatting."""
+    detected_mode = mode or detect_interaction_mode(prompt)
+    active_system_prompt = system_prompt or build_system_prompt(detected_mode)
+
     runner, warning = resolve_runner_with_fallback(provider, model_name)
     try:
-        text = runner.generate(prompt, system_prompt=system_prompt or DEFAULT_SYSTEM_PROMPT)
-        return text, warning
+        raw = runner.generate(prompt, system_prompt=active_system_prompt)
+        return apply_response_formatting(raw, detected_mode), warning
     except RunnerError:
         mock = create_runner("mock", model_name="mock")
-        text = mock.generate(prompt, system_prompt=system_prompt or DEFAULT_SYSTEM_PROMPT)
+        raw = mock.generate(prompt, system_prompt=active_system_prompt)
         combined_warning = MOCK_FALLBACK_WARNING if not warning else warning
-        return text, combined_warning
+        return apply_response_formatting(raw, detected_mode), combined_warning

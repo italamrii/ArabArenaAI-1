@@ -1,4 +1,4 @@
-"""ArabArena AI — production-grade minimal chat."""
+"""ArabArena AI — premium chat-only interface."""
 
 from __future__ import annotations
 
@@ -14,22 +14,13 @@ if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
 from workspace.ui.simple_chat_helpers import (
-    AI_DISCLAIMER,
     CHAT_PLACEHOLDER,
-    FOOTER_BRAND,
-    FOOTER_POWERED,
-    HERO_TAGLINE,
-    QUICK_ACTION_CHIPS,
-    SEARCH_PLACEHOLDER,
-    SEND_BUTTON_LABEL,
     SHOW_UPLOADS,
     THINKING_LABEL,
     build_prompt_with_attachments,
     chunk_text_for_stream,
-    empty_state_greeting,
     generate_chat_response,
     process_upload_bytes,
-    search_messages,
 )
 from workspace.ui.simple_chat_theme import simple_chat_css
 
@@ -50,7 +41,6 @@ def _init_state() -> None:
         "outbound_message": None,
         "last_upload_notice": None,
         "last_response_warning": None,
-        "search_query": "",
     }
     for key, value in defaults.items():
         if key not in st.session_state:
@@ -66,12 +56,9 @@ def _handle_upload(uploaded) -> None:
         attachment = process_upload_bytes(uploaded.name, uploaded.getvalue())
         st.session_state.pending_attachments.append(attachment)
         processed.add(upload_key)
-        notice = attachment.get("user_notice")
-        if notice:
-            st.session_state.last_upload_notice = notice
         st.toast(f"تم رفع {attachment['filename']}")
     except ValueError as exc:
-        st.error(str(exc))
+        st.markdown(f'<div class="aa-inline-notice">{html.escape(str(exc))}</div>', unsafe_allow_html=True)
 
 
 def _queue_message(prompt: str) -> None:
@@ -86,8 +73,7 @@ def _queue_message(prompt: str) -> None:
 
 def _render_thinking() -> None:
     st.markdown(
-        '<div class="aa-chat-shell">'
-        '<div class="aa-thinking-card">'
+        '<div class="aa-chat-shell"><div class="aa-thinking">'
         f"{html.escape(THINKING_LABEL)}"
         '<span class="aa-thinking-dot"></span>'
         '<span class="aa-thinking-dot"></span>'
@@ -114,7 +100,7 @@ def _process_outbound_message(prompt: str) -> None:
         if warning:
             st.session_state.last_response_warning = warning
 
-        st.markdown('<div class="aa-chat-shell"><div class="aa-msg-assistant-card">', unsafe_allow_html=True)
+        st.markdown('<div class="aa-chat-shell"><div class="aa-msg-assistant">', unsafe_allow_html=True)
         st.write_stream(chunk_text_for_stream(response))
         st.markdown("</div></div>", unsafe_allow_html=True)
 
@@ -127,74 +113,24 @@ def _process_outbound_message(prompt: str) -> None:
         st.rerun()
 
 
-def _render_hero(*, compact: bool) -> None:
-    compact_class = " aa-hero-compact" if compact else ""
+def _render_brand(*, compact: bool) -> None:
+    state = "compact" if compact else "hero"
     st.markdown(
-        f'<div class="aa-hero{compact_class}">'
-        '<div class="aa-hero-glow"></div>'
-        '<div class="aa-hero-brand-row">'
-        '<div class="aa-brand-avatar" aria-hidden="true">✨</div>'
-        '<div class="aa-hero-brand-text">'
-        '<h1 class="aa-hero-title">ArabArena AI</h1>'
-        f'<p class="aa-hero-tagline">{html.escape(HERO_TAGLINE)}</p>'
-        '<span class="aa-hero-badge">Beta</span>'
-        "</div></div></div>",
-        unsafe_allow_html=True,
-    )
-
-
-def _render_empty_greeting() -> None:
-    if st.session_state.simple_messages:
-        return
-    greeting = empty_state_greeting()
-    st.markdown(
-        '<div class="aa-empty-state">'
-        f'<h2 class="aa-empty-greeting">{html.escape(greeting)}</h2>'
+        f'<div class="aa-brand aa-brand-{state}">'
+        '<span class="aa-brand-mark" aria-hidden="true"></span>'
+        '<span class="aa-brand-name">ArabArena AI</span>'
+        '<span class="aa-brand-spark">✨</span>'
         "</div>",
         unsafe_allow_html=True,
     )
-
-
-def _render_search() -> None:
-    st.markdown('<div class="aa-search-shell">', unsafe_allow_html=True)
-    st.markdown('<div class="aa-search-bar">', unsafe_allow_html=True)
-    query = st.text_input(
-        "search",
-        value=st.session_state.get("search_query", ""),
-        placeholder=SEARCH_PLACEHOLDER,
-        label_visibility="collapsed",
-        key="aa_search_input",
-    )
-    st.session_state.search_query = query
-    st.markdown("</div>", unsafe_allow_html=True)
-
-    if query.strip():
-        results = search_messages(st.session_state.simple_messages, query)
-        st.markdown('<div class="aa-search-results">', unsafe_allow_html=True)
-        if not results:
-            st.markdown(
-                '<div class="aa-search-empty">لا توجد نتائج في هذه المحادثة</div>',
-                unsafe_allow_html=True,
-            )
-        else:
-            for hit in results[:8]:
-                role_label = "أنت" if hit["role"] == "user" else "ArabArena AI"
-                st.markdown(
-                    '<div class="aa-search-result-card">'
-                    f'<div class="aa-search-result-meta">{html.escape(role_label)}</div>'
-                    f'<div class="aa-search-result-snippet">{html.escape(hit["snippet"])}</div>'
-                    "</div>",
-                    unsafe_allow_html=True,
-                )
-        st.markdown("</div>", unsafe_allow_html=True)
-    st.markdown("</div>", unsafe_allow_html=True)
 
 
 def _render_thread() -> None:
     messages = st.session_state.simple_messages
     if not messages:
         return
-    st.markdown('<div class="aa-chat-shell"><div class="aa-simple-thread">', unsafe_allow_html=True)
+
+    st.markdown('<div class="aa-chat-shell"><div class="aa-thread">', unsafe_allow_html=True)
     for message in messages:
         role = message.get("role", "assistant")
         content = message.get("content", "")
@@ -204,48 +140,28 @@ def _render_thread() -> None:
                 unsafe_allow_html=True,
             )
         else:
-            st.markdown('<div class="aa-msg-assistant-card">', unsafe_allow_html=True)
+            st.markdown('<div class="aa-msg-assistant">', unsafe_allow_html=True)
             st.markdown(content)
             st.markdown("</div>", unsafe_allow_html=True)
     st.markdown("</div></div>", unsafe_allow_html=True)
 
 
-def _render_composer(*, docked: bool) -> None:
+def _render_composer(*, docked: bool, hero: bool) -> None:
     disabled = st.session_state.get("is_generating", False)
-    dock_class = " aa-glow-composer-dock" if docked else ""
-    form_key = "simple_chat_form"
+    mode_class = " aa-composer-hero" if hero else ""
+    dock_class = " aa-composer-dock" if docked else ""
 
-    st.markdown('<div class="aa-composer-wrap">', unsafe_allow_html=True)
+    if hero:
+        st.markdown('<div class="aa-composer-spotlight"></div>', unsafe_allow_html=True)
+
     st.markdown(
-        f'<div class="aa-glow-composer{dock_class}"><div class="aa-glow-composer-body">',
+        f'<div class="aa-composer-stage{mode_class}">'
+        f'<div class="aa-composer{dock_class}">'
+        f'<div class="aa-composer-inner">',
         unsafe_allow_html=True,
     )
 
     if SHOW_UPLOADS:
-        attachments = st.session_state.get("pending_attachments", [])
-        if attachments:
-            chips = " ".join(
-                f'<span class="aa-simple-chip">{item["filename"]}</span>' for item in attachments
-            )
-            st.markdown(chips, unsafe_allow_html=True)
-        notice = st.session_state.get("last_upload_notice")
-        if notice:
-            st.markdown(f'<div class="aa-simple-note">{notice}</div>', unsafe_allow_html=True)
-
-    with st.form(form_key, clear_on_submit=True):
-        prompt = st.text_area(
-            "message",
-            placeholder=CHAT_PLACEHOLDER,
-            label_visibility="collapsed",
-            height=100,
-            disabled=disabled,
-        )
-        st.markdown('<div class="aa-send-row">', unsafe_allow_html=True)
-        send = st.form_submit_button(SEND_BUTTON_LABEL, type="primary", disabled=disabled)
-        st.markdown("</div>", unsafe_allow_html=True)
-
-    if SHOW_UPLOADS:
-        st.markdown('<div class="aa-simple-upload-overlay aa-upload-hidden">', unsafe_allow_html=True)
         uploaded = st.file_uploader(
             "upload",
             type=["png", "jpg", "jpeg", "webp", "pdf", "txt", "md", "csv", "json"],
@@ -253,35 +169,26 @@ def _render_composer(*, docked: bool) -> None:
             key="simple_upload",
             disabled=disabled,
         )
-        st.markdown("</div>", unsafe_allow_html=True)
         if uploaded is not None:
             _handle_upload(uploaded)
+
+    with st.form("simple_chat_form", clear_on_submit=True):
+        input_col, send_col = st.columns([11, 1], vertical_alignment="bottom")
+        with input_col:
+            prompt = st.text_area(
+                "message",
+                placeholder=CHAT_PLACEHOLDER,
+                label_visibility="collapsed",
+                height=88,
+                disabled=disabled,
+            )
+        with send_col:
+            send = st.form_submit_button("↑", type="primary", use_container_width=True, disabled=disabled)
 
     st.markdown("</div></div></div>", unsafe_allow_html=True)
 
     if send and prompt and prompt.strip():
         _queue_message(prompt.strip())
-
-
-def _render_quick_chips() -> None:
-    disabled = st.session_state.get("is_generating", False)
-    st.markdown('<div class="aa-quick-chips">', unsafe_allow_html=True)
-    cols = st.columns(len(QUICK_ACTION_CHIPS))
-    for index, chip in enumerate(QUICK_ACTION_CHIPS):
-        if cols[index].button(chip["label"], key=f"quick_{index}", disabled=disabled):
-            _queue_message(chip["prompt"])
-    st.markdown("</div>", unsafe_allow_html=True)
-
-
-def _render_footer() -> None:
-    st.markdown(
-        f'<div class="aa-footer">'
-        f'<div class="aa-footer-brand">{html.escape(FOOTER_BRAND)}</div>'
-        f'<div class="aa-footer-powered">{html.escape(FOOTER_POWERED)}</div>'
-        f'<div class="aa-footer-disclaimer">{html.escape(AI_DISCLAIMER)}</div>'
-        "</div>",
-        unsafe_allow_html=True,
-    )
 
 
 def main() -> None:
@@ -294,21 +201,24 @@ def main() -> None:
         return
 
     has_messages = bool(st.session_state.simple_messages)
-    _render_hero(compact=has_messages)
-    _render_search()
+    hero = not has_messages
+
+    _render_brand(compact=has_messages)
 
     warning = st.session_state.pop("last_response_warning", None)
     if warning:
-        st.markdown(f'<div class="aa-inline-warning">{html.escape(warning)}</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="aa-inline-notice">{html.escape(warning)}</div>', unsafe_allow_html=True)
     error = st.session_state.pop("last_error", None)
     if error:
-        st.error(f"تعذّر إرسال الرسالة: {error}")
+        st.markdown(
+            f'<div class="aa-inline-notice">{html.escape(f"تعذّر إرسال الرسالة: {error}")}</div>',
+            unsafe_allow_html=True,
+        )
 
-    _render_empty_greeting()
-    _render_thread()
-    _render_composer(docked=has_messages)
-    _render_quick_chips()
-    _render_footer()
+    if has_messages:
+        _render_thread()
+
+    _render_composer(docked=has_messages, hero=hero)
 
 
 if __name__ == "__main__":
