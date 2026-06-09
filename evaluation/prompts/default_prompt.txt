@@ -1,0 +1,8 @@
+"""Default evaluation prompt template."""
+
+DEFAULT_SYSTEM_PROMPT = """You are an expert assistant evaluated on ArabArenaAI-1 benchmarks.
+Answer in the same language as the question unless instructed otherwise.
+Be accurate, complete, and relevant. For factual questions about Saudi Arabia, prefer precise official terminology.
+"""
+
+DEFAULT_USER_TEMPLATE = "{question}"

@@ -189,8 +189,11 @@ ArabArenaAI-1/
 | [docs/MODEL_STRATEGY.md](docs/MODEL_STRATEGY.md) | Base model selection and comparisons |
 | [docs/BENCHMARKS.md](docs/BENCHMARKS.md) | Evaluation categories and scoring |
 | [docs/EVALUATION_FRAMEWORK.md](docs/EVALUATION_FRAMEWORK.md) | Pass/fail criteria and benchmark weighting |
+| [docs/EVALUATION_HARNESS.md](docs/EVALUATION_HARNESS.md) | Phase 4 harness architecture and usage |
 | [docs/MODEL_RELEASE_POLICY.md](docs/MODEL_RELEASE_POLICY.md) | Release gates and minimum scores |
+| [evaluation/](evaluation/) | Evaluation harness (CLI, runners, scorers) |
 | [evaluation/benchmarks/](evaluation/benchmarks/) | Frozen benchmark items (150 seed questions) |
+| [knowledge/README.md](knowledge/README.md) | Saudi Knowledge Pack v1 — source registry and seed documents |
 | [research/FUTURE_IDEAS.md](research/FUTURE_IDEAS.md) | RAG, agents, foundation model path |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | How to contribute |
 

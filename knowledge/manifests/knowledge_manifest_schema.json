@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://arabarena.ai/schemas/knowledge_manifest/v1",
+  "title": "ArabArenaAI Saudi Knowledge Pack Manifest",
+  "description": "Schema for auditable source registry entries in Saudi Knowledge Pack manifests.",
+  "type": "object",
+  "required": ["pack_id", "pack_version", "status", "sources"],
+  "properties": {
+    "pack_id": { "type": "string", "minLength": 1 },
+    "pack_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": {
+      "type": "string",
+      "enum": ["proposed", "approved", "deprecated"]
+    },
+    "description": { "type": "string" },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/source" }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "required": [
+        "source_id",
+        "title",
+        "organization",
+        "url",
+        "domain",
+        "license_status",
+        "allowed_use",
+        "collection_status",
+        "collected_at",
+        "notes",
+        "document_file"
+      ],
+      "properties": {
+        "source_id": { "type": "string", "pattern": "^skp-[a-z0-9-]+$" },
+        "title": { "type": "string", "minLength": 1 },
+        "organization": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "format": "uri" },
+        "domain": {
+          "type": "string",
+          "enum": [
+            "qiwa",
+            "nitaqat",
+            "monshaat",
+            "zatca",
+            "misa",
+            "etimad",
+            "vision2030"
+          ]
+        },
+        "license_status": {
+          "type": "string",
+          "enum": ["proposed", "pending_review", "approved", "blocked", "unknown"]
+        },
+        "allowed_use": { "type": "string", "minLength": 1 },
+        "collection_status": {
+          "type": "string",
+          "enum": ["proposed", "approved", "collected", "blocked"]
+        },
+        "collected_at": {
+          "type": ["string", "null"],
+          "description": "ISO-8601 timestamp when material was collected; null if not collected."
+        },
+        "notes": { "type": "string" },
+        "document_file": {
+          "type": "string",
+          "description": "Relative path to seed document under knowledge/documents/"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

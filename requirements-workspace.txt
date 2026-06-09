@@ -1,0 +1,9 @@
+# Workspace layer dependencies (Phase Next)
+# Install: pip install -r requirements-workspace.txt
+SQLAlchemy>=2.0.36,<3
+alembic>=1.14.0,<2
+psycopg[binary]>=3.2.0,<4
+fastapi>=0.115.0,<1
+uvicorn[standard]>=0.32.0,<1
+httpx>=0.27.0,<1
+streamlit>=1.32,<2

@@ -101,6 +101,16 @@ checkpoints/*
 !samples/
 !samples/**
 
+# Evaluation harness benchmark JSONL (small curated files only)
+!evaluation/datasets/
+!evaluation/datasets/*.jsonl
+
+# Evaluation run artifacts (generated locally)
+evaluation/results/*.json
+evaluation/reports/leaderboard.json
+evaluation/reports/regression_*.json
+evaluation/reports/regression_*.md
+
 # Secrets & environment
 .env
 .env.*

@@ -1,0 +1,99 @@
+{
+  "pack_id": "saudi_knowledge_pack_v1",
+  "pack_version": "1.0.0",
+  "status": "proposed",
+  "description": "Starter Saudi Knowledge Pack v1 — seven priority government and business domains for future RAG use. Seed documents are manually authored; no automated scraping.",
+  "sources": [
+    {
+      "source_id": "skp-qiwa-001",
+      "title": "Qiwa Platform — Saudi Labor Market Services",
+      "organization": "Ministry of Human Resources and Social Development (HRSD)",
+      "url": "https://qiwa.sa/",
+      "domain": "qiwa",
+      "license_status": "proposed",
+      "allowed_use": "registry_only — pending legal review before collection or RAG indexing",
+      "collection_status": "proposed",
+      "collected_at": null,
+      "notes": "Official labor-market platform for work permits, contracts, and related employer services. Seed document is manually written summary only; no site content scraped.",
+      "document_file": "documents/qiwa.md"
+    },
+    {
+      "source_id": "skp-nitaqat-001",
+      "title": "Nitaqat (Saudization) Program",
+      "organization": "Ministry of Human Resources and Social Development (HRSD)",
+      "url": "https://qiwa.sa/",
+      "domain": "nitaqat",
+      "license_status": "proposed",
+      "allowed_use": "registry_only — pending legal review before collection or RAG indexing",
+      "collection_status": "proposed",
+      "collected_at": null,
+      "notes": "Nitaqat classification system linked to Qiwa. Seed content covers program purpose and color bands at a high level only.",
+      "document_file": "documents/nitaqat.md"
+    },
+    {
+      "source_id": "skp-monshaat-001",
+      "title": "Monsha'at — SME Authority",
+      "organization": "General Authority for Small and Medium Enterprises (Monsha'at)",
+      "url": "https://monshaat.gov.sa/",
+      "domain": "monshaat",
+      "license_status": "proposed",
+      "allowed_use": "registry_only — pending legal review before collection or RAG indexing",
+      "collection_status": "proposed",
+      "collected_at": null,
+      "notes": "SME support programs, entrepreneurship enablement, and business development services. Manual seed summary only.",
+      "document_file": "documents/monshaat.md"
+    },
+    {
+      "source_id": "skp-zatca-001",
+      "title": "ZATCA — Zakat, Tax and Customs Authority",
+      "organization": "Zakat, Tax and Customs Authority (ZATCA)",
+      "url": "https://zatca.gov.sa/",
+      "domain": "zatca",
+      "license_status": "proposed",
+      "allowed_use": "registry_only — pending legal review before collection or RAG indexing",
+      "collection_status": "proposed",
+      "collected_at": null,
+      "notes": "Covers high-level tax, zakat, customs, and e-invoicing concepts. No official publications collected yet.",
+      "document_file": "documents/zatca.md"
+    },
+    {
+      "source_id": "skp-misa-001",
+      "title": "Ministry of Investment (MISA)",
+      "organization": "Ministry of Investment (MISA)",
+      "url": "https://misa.gov.sa/",
+      "domain": "misa",
+      "license_status": "proposed",
+      "allowed_use": "registry_only — pending legal review before collection or RAG indexing",
+      "collection_status": "proposed",
+      "collected_at": null,
+      "notes": "Foreign and domestic investment licensing, investor services, and business environment enablement. Manual seed only.",
+      "document_file": "documents/misa.md"
+    },
+    {
+      "source_id": "skp-etimad-001",
+      "title": "Etimad — Government Procurement Platform",
+      "organization": "National Center for Government Resources Systems (NCGR)",
+      "url": "https://portal.etimad.sa/",
+      "domain": "etimad",
+      "license_status": "proposed",
+      "allowed_use": "registry_only — pending legal review before collection or RAG indexing",
+      "collection_status": "proposed",
+      "collected_at": null,
+      "notes": "Government tenders, competitions, and procurement workflows. Seed summary for benchmark/RAG planning only.",
+      "document_file": "documents/etimad.md"
+    },
+    {
+      "source_id": "skp-vision2030-001",
+      "title": "Saudi Vision 2030",
+      "organization": "Vision Realization Programs / Vision 2030 Office",
+      "url": "https://www.vision2030.gov.sa/",
+      "domain": "vision2030",
+      "license_status": "pending_review",
+      "allowed_use": "registry_only — collection blocked pending docs/legal/licenses/vision2030-license-review.md",
+      "collection_status": "proposed",
+      "collected_at": null,
+      "notes": "Strategic national transformation plan. Legal review file exists and status is PENDING REVIEW; no official content collected.",
+      "document_file": "documents/vision2030.md"
+    }
+  ]
+}
